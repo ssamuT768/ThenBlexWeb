@@ -21,7 +21,7 @@
       </div>
     </nav>
 
-    <!-- Contenido Principal Panel Horizontal con Pestañas Internas -->
+    <!-- Contenido Principal con Scroll Deslizable -->
     <main class="content-container panel-container">
       <h1 class="dashboard-title">Bot Control Panel</h1>
 
@@ -32,147 +32,152 @@
         <button class="panel-tab-btn" onclick="switchPanelTab('advanced', event)">Advanced</button>
         <button class="panel-tab-btn" onclick="switchPanelTab('settings', event)">Settings</button>
       </div>
-      
-      <!-- CONTENEDOR 1: MAIN -->
-      <div id="ptab-main" class="panel-tab-content active">
-        <div class="panel-horizontal-box">
-          
-          <div class="panel-section-title">Connection Settings</div>
-          <div class="panel-row">
-            <div class="input-field-group">
-              <label>Host / IP</label>
-              <input type="text" id="main-ip" placeholder="127.0.0.1" autocomplete="off">
-            </div>
-            <div class="input-field-group">
-              <label>Puerto</label>
-              <input type="text" id="main-port" placeholder="19132" autocomplete="off">
-            </div>
-            <div class="input-field-group">
-              <label>Nombre Base</label>
-              <input type="text" id="main-name" placeholder="ThenBlexBot" autocomplete="off">
-            </div>
-            <div class="input-field-group">
-              <label>Cantidad Bots</label>
-              <input type="number" id="main-bots" placeholder="1" min="1" max="100">
-            </div>
-          </div>
 
-          <div class="panel-section-title" style="margin-top: 5px;">Timers & Proxies</div>
-          <div class="panel-row">
-            <div class="input-field-group">
-              <label>Hold</label>
-              <input type="text" id="main-hold" placeholder="20s" autocomplete="off">
+      <!-- Wrapper con Scroll Customizado -->
+      <div class="panel-scroll-viewport">
+        
+        <!-- CONTENEDOR 1: MAIN -->
+        <div id="ptab-main" class="panel-tab-content active">
+          <div class="panel-horizontal-box">
+            
+            <div class="panel-section-title">Connection Settings</div>
+            <div class="panel-row">
+              <div class="input-field-group">
+                <label>Host / IP</label>
+                <input type="text" id="main-ip" placeholder="127.0.0.1" autocomplete="off">
+              </div>
+              <div class="input-field-group">
+                <label>Puerto</label>
+                <input type="text" id="main-port" placeholder="19132" autocomplete="off">
+              </div>
+              <div class="input-field-group">
+                <label>Nombre Base</label>
+                <input type="text" id="main-name" placeholder="ThenBlexBot" autocomplete="off">
+              </div>
+              <div class="input-field-group">
+                <label>Cantidad Bots</label>
+                <input type="number" id="main-bots" placeholder="1" min="1" max="100">
+              </div>
             </div>
-            <div class="input-field-group">
-              <label>Timeout</label>
-              <input type="text" id="main-timeout" placeholder="6s" autocomplete="off">
-            </div>
-            <div class="input-field-group">
-              <label>Cooldown</label>
-              <input type="text" id="main-coldown" placeholder="0.5s" autocomplete="off">
-            </div>
-            <div class="input-field-group checkbox-group">
-              <label class="checkbox-label">
-                <input type="checkbox" id="main-proxy-switch">
-                <span>Rotación de Proxies</span>
-              </label>
-            </div>
-          </div>
 
-          <!-- Botones de Acción START / STOP -->
-          <div class="panel-row buttons-row">
-            <button class="panel-action-btn start-btn" onclick="startBots()">START</button>
-            <button class="panel-action-btn stop-btn" onclick="stopBots()">STOP</button>
-          </div>
+            <div class="panel-section-title" style="margin-top: 5px;">Timers & Proxies</div>
+            <div class="panel-row">
+              <div class="input-field-group">
+                <label>Hold</label>
+                <input type="text" id="main-hold" placeholder="20s" autocomplete="off">
+              </div>
+              <div class="input-field-group">
+                <label>Timeout</label>
+                <input type="text" id="main-timeout" placeholder="6s" autocomplete="off">
+              </div>
+              <div class="input-field-group">
+                <label>Cooldown</label>
+                <input type="text" id="main-coldown" placeholder="0.5s" autocomplete="off">
+              </div>
+              <div class="input-field-group checkbox-group">
+                <label class="checkbox-label">
+                  <input type="checkbox" id="main-proxy-switch">
+                  <span>Rotación de Proxies</span>
+                </label>
+              </div>
+            </div>
 
-          <!-- Consola de Logs al estilo de configuración de proxies (alineada a la izquierda) -->
-          <div class="panel-section-title" style="margin-top: 5px;">Consola de Logs</div>
-          <div class="panel-row">
-            <div class="input-field-group" style="flex: 100%;">
-              <textarea id="main-logs-console" class="panel-textarea logs-textarea" readonly>[*] ThenBlex Launcher listo para conectar con Python backend...
+            <!-- Botones de Acción START / STOP -->
+            <div class="panel-row buttons-row">
+              <button class="panel-action-btn start-btn" onclick="startBots()">START</button>
+              <button class="panel-action-btn stop-btn" onclick="stopBots()">STOP</button>
+            </div>
+
+            <!-- Consola de Logs -->
+            <div class="panel-section-title" style="margin-top: 5px;">Consola de Logs</div>
+            <div class="panel-row">
+              <div class="input-field-group" style="flex: 100%;">
+                <textarea id="main-logs-console" class="panel-textarea logs-textarea" readonly>[*] ThenBlex Launcher listo para conectar con Python backend...
 [*] Esperando instrucciones de inicio...</textarea>
+              </div>
             </div>
-          </div>
-          <div class="panel-row" style="justify-content: flex-start;">
-            <button class="panel-tab-btn" style="padding: 6px 16px; font-size: 12px;" onclick="clearLogs()">Limpiar Consola</button>
-          </div>
+            <div class="panel-row" style="justify-content: flex-start;">
+              <button class="panel-tab-btn" style="padding: 6px 16px; font-size: 12px;" onclick="clearLogs()">Limpiar Consola</button>
+            </div>
 
-        </div>
-      </div>
-
-      <!-- CONTENEDOR 2: IN TIME -->
-      <div id="ptab-intime" class="panel-tab-content">
-        <div class="panel-horizontal-box">
-          <div class="panel-section-title">Live Monitor & Chat</div>
-          <div class="panel-row stats-row">
-            <div class="stat-box"><span>Bots activos:</span> <b id="stat-bots">0</b></div>
-            <div class="stat-box"><span>Tiempo:</span> <b id="stat-uptime">00:00</b></div>
-            <div class="stat-box"><span>Ping:</span> <b id="stat-ping">0 ms</b></div>
-          </div>
-          <div class="panel-row" style="margin-top: 10px;">
-            <div class="input-field-group" style="flex: 100%;">
-              <label>Chat del Servidor</label>
-              <textarea class="panel-textarea" readonly placeholder="Esperando mensajes del servidor..."></textarea>
-            </div>
-          </div>
-          <div class="panel-row" style="margin-top: 10px;">
-            <div class="input-field-group" style="flex: 80%;">
-              <input type="text" placeholder="Escribe un mensaje en el chat..." autocomplete="off">
-            </div>
-            <div class="input-field-group" style="flex: 20%;">
-              <button class="panel-action-btn start-btn" style="width: 100%; padding: 11px;">Enviar</button>
-            </div>
           </div>
         </div>
-      </div>
 
-      <!-- CONTENEDOR 3: ADVANCED -->
-      <div id="ptab-advanced" class="panel-tab-content">
-        <div class="panel-horizontal-box">
-          <div class="panel-section-title">Advanced Controls & Spam</div>
-          <div class="panel-row">
-            <div class="input-field-group">
-              <label>Chunk Radius (1-96)</label>
-              <input type="number" value="8" min="1" max="96">
+        <!-- CONTENEDOR 2: IN TIME -->
+        <div id="ptab-intime" class="panel-tab-content">
+          <div class="panel-horizontal-box">
+            <div class="panel-section-title">Live Monitor & Chat</div>
+            <div class="panel-row stats-row">
+              <div class="stat-box"><span>Bots activos:</span> <b id="stat-bots">0</b></div>
+              <div class="stat-box"><span>Tiempo:</span> <b id="stat-uptime">00:00</b></div>
+              <div class="stat-box"><span>Ping:</span> <b id="stat-ping">0 ms</b></div>
             </div>
-            <div class="input-field-group">
-              <label>Spam Interval (ms)</label>
-              <input type="number" value="2000">
+            <div class="panel-row" style="margin-top: 10px;">
+              <div class="input-field-group" style="flex: 100%;">
+                <label>Chat del Servidor</label>
+                <textarea class="panel-textarea" readonly placeholder="Esperando mensajes del servidor..."></textarea>
+              </div>
             </div>
-          </div>
-          <div class="panel-row" style="margin-top: 10px;">
-            <div class="input-field-group" style="flex: 100%;">
-              <label>Mensaje de Spam</label>
-              <textarea class="panel-textarea" placeholder="Escribe tu mensaje de spam aquí..."></textarea>
-            </div>
-          </div>
-          <div class="panel-row buttons-row" style="margin-top: 15px;">
-            <button class="panel-action-btn start-btn">START SPAM</button>
-            <button class="panel-action-btn stop-btn">STOP SPAM</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- CONTENEDOR 4: SETTINGS -->
-      <div id="ptab-settings" class="panel-tab-content">
-        <div class="panel-horizontal-box">
-          <div class="panel-section-title">Servers & Proxy Manager</div>
-          <div class="panel-row">
-            <div class="input-field-group">
-              <label>Añadir Servidor (Name:IP:Port)</label>
-              <input type="text" placeholder="Server1:127.0.0.1:19132" autocomplete="off">
-            </div>
-            <div class="input-field-group" style="justify-content: flex-end;">
-              <button class="panel-action-btn start-btn" style="padding: 11px;">Añadir Servidor</button>
-            </div>
-          </div>
-          <div class="panel-row" style="margin-top: 10px;">
-            <div class="input-field-group" style="flex: 100%;">
-              <label>Lista de Proxies (SOCKS5)</label>
-              <textarea class="panel-textarea" placeholder="socks5://ip:port..."></textarea>
+            <div class="panel-row" style="margin-top: 10px;">
+              <div class="input-field-group" style="flex: 80%;">
+                <input type="text" placeholder="Escribe un mensaje en el chat..." autocomplete="off">
+              </div>
+              <div class="input-field-group" style="flex: 20%;">
+                <button class="panel-action-btn start-btn" style="width: 100%; padding: 11px;">Enviar</button>
+              </div>
             </div>
           </div>
         </div>
+
+        <!-- CONTENEDOR 3: ADVANCED -->
+        <div id="ptab-advanced" class="panel-tab-content">
+          <div class="panel-horizontal-box">
+            <div class="panel-section-title">Advanced Controls & Spam</div>
+            <div class="panel-row">
+              <div class="input-field-group">
+                <label>Chunk Radius (1-96)</label>
+                <input type="number" value="8" min="1" max="96">
+              </div>
+              <div class="input-field-group">
+                <label>Spam Interval (ms)</label>
+                <input type="number" value="2000">
+              </div>
+            </div>
+            <div class="panel-row" style="margin-top: 10px;">
+              <div class="input-field-group" style="flex: 100%;">
+                <label>Mensaje de Spam</label>
+                <textarea class="panel-textarea" placeholder="Escribe tu mensaje de spam aquí..."></textarea>
+              </div>
+            </div>
+            <div class="panel-row buttons-row" style="margin-top: 15px;">
+              <button class="panel-action-btn start-btn">START SPAM</button>
+              <button class="panel-action-btn stop-btn">STOP SPAM</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- CONTENEDOR 4: SETTINGS -->
+        <div id="ptab-settings" class="panel-tab-content">
+          <div class="panel-horizontal-box">
+            <div class="panel-section-title">Servers & Proxy Manager</div>
+            <div class="panel-row">
+              <div class="input-field-group">
+                <label>Añadir Servidor (Name:IP:Port)</label>
+                <input type="text" placeholder="Server1:127.0.0.1:19132" autocomplete="off">
+              </div>
+              <div class="input-field-group" style="justify-content: flex-end;">
+                <button class="panel-action-btn start-btn" style="padding: 11px;">Añadir Servidor</button>
+              </div>
+            </div>
+            <div class="panel-row" style="margin-top: 10px;">
+              <div class="input-field-group" style="flex: 100%;">
+                <label>Lista de Proxies (SOCKS5)</label>
+                <textarea class="panel-textarea" placeholder="socks5://ip:port..."></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
 
     </main>
