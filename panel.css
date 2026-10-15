@@ -1,0 +1,110 @@
+.panel-container {
+  max-width: 1000px !important;
+}
+
+/* Caja contenedora horizontal moderna */
+.panel-horizontal-box {
+  width: 100%;
+  background: rgba(15, 20, 32, 0.75);
+  backdrop-filter: blur(12px);
+  padding: 30px;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 229, 255, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  display: flex;
+  gap: 20px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+.input-field-group {
+  flex: 1;
+  min-width: 160px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input-field-group label {
+  font-size: 13px;
+  color: #94A3B8;
+  font-weight: 600;
+}
+
+.input-field-group input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #1E293B;
+  background-color: #161D2F;
+  color: #FFFFFF;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input-field-group input:focus {
+  border-color: #00E5FF;
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.2);
+}
+
+.panel-buttons-group {
+  display: flex;
+  gap: 12px;
+}
+
+/* Botones de acción con efecto espejo, ampliación y brillo */
+.panel-action-btn {
+  position: relative;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 14px;
+  color: white;
+  overflow: hidden;
+  transition: transform 0.25s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.panel-action-btn::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(30deg) translateX(-100%);
+  transition: transform 0.6s ease-in-out;
+}
+
+.panel-action-btn:hover {
+  transform: scale(1.05);
+}
+
+.panel-action-btn:hover::after {
+  transform: rotate(30deg) translateX(100%);
+}
+
+.start-btn {
+  background-color: #22C55E;
+  box-shadow: 0 4px 15px rgba(34, 197, 94, 0.25);
+}
+.start-btn:hover {
+  background-color: #16A34A;
+  box-shadow: 0 6px 20px rgba(34, 197, 94, 0.4);
+}
+
+.stop-btn {
+  background-color: #EF4444;
+  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.25);
+}
+.stop-btn:hover {
+  background-color: #DC2626;
+  box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
+}
