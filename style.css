@@ -1,0 +1,440 @@
+/* ================= VARIABLES Y ESTILOS GENERALES ================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: #0F0F12;
+  color: #F4F4F5;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ================= PANTALLA DE CARGA ================= */
+.loader-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #0F0F12;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  transition: opacity 0.5s ease;
+}
+
+.loader-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+
+/* Título con degradado Azul Claro a Blanco */
+.brand-title {
+  font-size: 42px;
+  font-weight: bold;
+  background: linear-gradient(135deg, #38BDF8 0%, #FFFFFF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  position: absolute;
+}
+
+/* Efecto al subir el título */
+.brand-title.slide-up {
+  transform: translateY(-50px) scale(0.75);
+}
+
+/* Contenedor de la barra de carga */
+.progress-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 30px;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.progress-container.fade-out {
+  opacity: 0;
+}
+
+/* Barra Azul Marino con bordes redondeados */
+.progress-bar-bg {
+  width: 260px;
+  height: 12px;
+  background-color: #161622;
+  border: 1px solid #1E1E2F;
+  border-radius: 999px;
+  overflow: hidden;
+  padding: 2px;
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.1);
+}
+
+.progress-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #1E40AF, #38BDF8);
+  border-radius: 999px;
+  transition: width 0.1s linear;
+}
+
+/* Porcentaje en Blanco */
+.progress-text {
+  margin-top: 10px;
+  font-size: 13px;
+  color: #FFFFFF;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.fade-out-screen {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ================= SISTEMA DE KEY ================= */
+.key-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(15, 15, 18, 0.85);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 50;
+}
+
+/* Ventana estilo aplicación de escritorio */
+.key-window {
+  background-color: #16161A;
+  border: 1px solid #2A2A35;
+  border-radius: 14px;
+  width: 380px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+  overflow: hidden;
+  transform: scale(1);
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.6s ease;
+}
+
+.window-header {
+  background-color: #1C1C22;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #2A2A35;
+}
+
+.window-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.dot.red { background-color: #EF4444; }
+.dot.yellow { background-color: #F59E0B; }
+.dot.green { background-color: #22C55E; }
+
+.window-title-bar {
+  margin-left: 12px;
+  font-size: 12px;
+  color: #A1A1AA;
+  font-weight: bold;
+}
+
+.key-body {
+  padding: 26px;
+}
+
+.key-heading {
+  font-size: 22px;
+  font-weight: bold;
+  background: linear-gradient(135deg, #38BDF8 0%, #FFFFFF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 6px;
+}
+
+.key-sub {
+  font-size: 13px;
+  color: #A1A1AA;
+  margin-bottom: 20px;
+}
+
+/* Input con botón de ojo integrado */
+.input-group-secure {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.input-group-secure input {
+  width: 100%;
+  padding: 11px 40px 11px 12px;
+  border-radius: 9px;
+  border: 1px solid #2A2A35;
+  background-color: #1C1C22;
+  color: #FFF;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.input-group-secure input:focus {
+  border-color: #38BDF8;
+}
+
+.eye-btn {
+  position: absolute;
+  right: 10px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #A1A1AA;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-radius: 4px;
+  transition: color 0.2s;
+}
+
+.eye-btn:hover {
+  color: #FFFFFF;
+}
+
+.error-msg {
+  font-size: 12px;
+  color: #EF4444;
+  margin-bottom: 14px;
+  height: 14px;
+}
+
+/* Botón Verificar con efecto espejo / glass y ampliación */
+.verify-btn {
+  position: relative;
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 9px;
+  background-color: #22C55E;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.25s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Efecto Espejo (Shimmer) */
+.verify-btn::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.25) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(30deg) translateX(-100%);
+  transition: transform 0.6s ease-in-out;
+}
+
+.verify-btn:hover {
+  transform: scale(1.03);
+  background-color: #16A34A;
+  box-shadow: 0 4px 15px rgba(34, 197, 94, 0.35);
+}
+
+.verify-btn:hover::after {
+  transform: rotate(30deg) translateX(100%);
+}
+
+/* Spinner de carga dentro del botón */
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Animación de sacudida si la Key es incorrecta */
+.shake {
+  animation: shake 0.4s ease;
+  border-color: #EF4444 !important;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
+}
+
+/* Animación de minimizar estilo Windows */
+.windows-minimize {
+  transform: scale(0.1) translateY(400px);
+  opacity: 0;
+}
+
+/* ================= PANEL PRINCIPAL (DASHBOARD) ================= */
+.dashboard {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #09090D 0%, #FFFFFF 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.fade-in-dashboard {
+  opacity: 1;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 32px;
+  background-color: rgba(15, 15, 18, 0.75);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-brand {
+  font-size: 20px;
+  font-weight: bold;
+  background: linear-gradient(135deg, #38BDF8 0%, #FFFFFF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.nav-links {
+  display: flex;
+  gap: 12px;
+}
+
+.nav-btn {
+  background: transparent;
+  border: none;
+  color: #A1A1AA;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.nav-btn:hover, .nav-btn.active {
+  color: #FFFFFF;
+  background-color: rgba(56, 189, 248, 0.15);
+}
+
+/* Contenido Principal */
+.content-container {
+  flex: 1;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  width: 100%;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+  animation: fadeInTab 0.4s ease;
+}
+
+@keyframes fadeInTab {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.dashboard-title {
+  font-size: 36px;
+  font-weight: bold;
+  background: linear-gradient(135deg, #0F172A 0%, #38BDF8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 16px;
+}
+
+.dashboard-description {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #1E293B;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(5px);
+  padding: 24px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Desarrollador resaltado en Azul Claro y fuente llamativa */
+.highlight-dev {
+  color: #0284C7;
+  font-weight: bold;
+  font-family: 'Georgia', serif;
+  font-style: italic;
+  letter-spacing: 0.5px;
+}
+
+/* Footer */
+.footer {
+  padding: 16px 32px;
+  display: flex;
+  justify-content: flex-end;
+  background-color: rgba(15, 15, 18, 0.4);
+}
+
+.version-text {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 300;
+}
