@@ -33,55 +33,94 @@
         <button class="panel-tab-btn" onclick="switchPanelTab('settings', event)">Settings</button>
       </div>
       
-      <!-- CONTENEDOR 1: MAIN -->
+      <!-- CONTENEDOR 1: MAIN (Con dos columnas y consola de logs abajo) -->
       <div id="ptab-main" class="panel-tab-content active">
         <div class="panel-horizontal-box">
-          <div class="panel-section-title">Connection Settings</div>
-          <div class="panel-row">
-            <div class="input-field-group">
-              <label>Host / IP</label>
-              <input type="text" id="main-ip" placeholder="127.0.0.1" autocomplete="off">
+          
+          <!-- Fila superior dividida en dos columnas: Controles (Izquierda) y Ventana extra (Derecha) -->
+          <div class="panel-main-grid">
+            
+            <!-- Columna Izquierda: Configuración -->
+            <div class="panel-main-column">
+              <div class="panel-section-title">Connection Settings</div>
+              <div class="panel-row">
+                <div class="input-field-group">
+                  <label>Host / IP</label>
+                  <input type="text" id="main-ip" placeholder="127.0.0.1" autocomplete="off">
+                </div>
+                <div class="input-field-group">
+                  <label>Puerto</label>
+                  <input type="text" id="main-port" placeholder="19132" autocomplete="off">
+                </div>
+              </div>
+              <div class="panel-row">
+                <div class="input-field-group">
+                  <label>Nombre Base</label>
+                  <input type="text" id="main-name" placeholder="ThenBlexBot" autocomplete="off">
+                </div>
+                <div class="input-field-group">
+                  <label>Cantidad Bots</label>
+                  <input type="number" id="main-bots" placeholder="1" min="1" max="100">
+                </div>
+              </div>
+
+              <div class="panel-section-title" style="margin-top: 10px;">Timers & Proxies</div>
+              <div class="panel-row">
+                <div class="input-field-group">
+                  <label>Hold</label>
+                  <input type="text" id="main-hold" placeholder="20s" autocomplete="off">
+                </div>
+                <div class="input-field-group">
+                  <label>Timeout</label>
+                  <input type="text" id="main-timeout" placeholder="6s" autocomplete="off">
+                </div>
+                <div class="input-field-group">
+                  <label>Cooldown</label>
+                  <input type="text" id="main-coldown" placeholder="0.5s" autocomplete="off">
+                </div>
+              </div>
+              <div class="panel-row">
+                <div class="input-field-group checkbox-group" style="align-items: flex-start;">
+                  <label class="checkbox-label">
+                    <input type="checkbox" id="main-proxy-switch">
+                    <span>Rotación de Proxies</span>
+                  </label>
+                </div>
+              </div>
             </div>
-            <div class="input-field-group">
-              <label>Puerto</label>
-              <input type="text" id="main-port" placeholder="19132" autocomplete="off">
+
+            <!-- Columna Derecha: Nueva Ventana Adicional de Estado / Quick Info -->
+            <div class="panel-side-window">
+              <div class="panel-section-title">Session Status</div>
+              <div class="side-window-content">
+                <div class="status-item"><span>Target:</span> <b id="status-target">127.0.0.1:19132</b></div>
+                <div class="status-item"><span>Bots Ready:</span> <b id="status-ready">0 / 0</b></div>
+                <div class="status-item"><span>API Backend:</span> <b class="status-online">Connected (Render)</b></div>
+                <div class="status-quick-desc">
+                  El script está preparado para enrutar los paquetes RakNet hacia tu servicio web de FastAPI. Asegúrate de configurar correctamente los parámetros antes de iniciar.
+                </div>
+              </div>
             </div>
-            <div class="input-field-group">
-              <label>Nombre Base</label>
-              <input type="text" id="main-name" placeholder="ThenBlexBot" autocomplete="off">
-            </div>
-            <div class="input-field-group">
-              <label>Cantidad Bots</label>
-              <input type="number" id="main-bots" placeholder="1" min="1" max="100">
-            </div>
+
           </div>
 
-          <div class="panel-section-title" style="margin-top: 15px;">Timers & Proxies</div>
-          <div class="panel-row">
-            <div class="input-field-group">
-              <label>Hold (segundos)</label>
-              <input type="text" id="main-hold" placeholder="20s" autocomplete="off">
-            </div>
-            <div class="input-field-group">
-              <label>Timeout</label>
-              <input type="text" id="main-timeout" placeholder="6s" autocomplete="off">
-            </div>
-            <div class="input-field-group">
-              <label>Cooldown</label>
-              <input type="text" id="main-coldown" placeholder="0.5s" autocomplete="off">
-            </div>
-            <div class="input-field-group checkbox-group">
-              <label class="checkbox-label">
-                <input type="checkbox" id="main-proxy-switch">
-                <span>Usar Proxies</span>
-              </label>
-            </div>
-          </div>
-
-          <div class="panel-row buttons-row" style="margin-top: 20px;">
+          <!-- Botones de Acción START / STOP -->
+          <div class="panel-row buttons-row">
             <button class="panel-action-btn start-btn" onclick="startBots()">START</button>
             <button class="panel-action-btn stop-btn" onclick="stopBots()">STOP</button>
           </div>
+
+          <!-- Consola de Logs abajo -->
+          <div class="panel-section-title" style="margin-top: 10px;">Logs de Conexión</div>
+          <div class="panel-row">
+            <div class="input-field-group" style="flex: 100%;">
+              <textarea id="main-logs-console" class="panel-textarea logs-textarea" readonly>[*] ThenBlex Launcher listo para conectar con Python backend...\n[*] Esperando instrucciones de inicio...</textarea>
+            </div>
+          </div>
+          <div class="panel-row" style="justify-content: flex-end;">
+            <button class="panel-tab-btn" style="padding: 6px 14px; font-size: 12px;" onclick="clearLogs()">Limpiar Logs</button>
+          </div>
+
         </div>
       </div>
 
@@ -177,15 +216,27 @@
       event.currentTarget.classList.add("active");
     }
 
+    function clearLogs() {
+      document.getElementById("main-logs-console.value = "[*] Logs limpiados.\n";
+    }
+
     function startBots() {
-      const ip = document.getElementById("main-ip").value;
-      const port = document.getElementById("main-port").value;
-      const count = document.getElementById("main-bots").value;
-      alert(`Iniciando ${count || 1} bots hacia ${ip || '127.0.0.1'}:${port || '19132'}...`);
+      const ip = document.getElementById("main-ip").value || "127.0.0.1";
+      const port = document.getElementById("main-port").value || "19132";
+      const count = document.getElementById("main-bots").value || "1";
+      
+      const consoleLog = document.getElementById("main-logs-console");
+      consoleLog.value += `\n[*] Iniciando ${count} bot(s) hacia ${ip}:${port}...\n[*] Conectando mediante FastAPI backend en Render...`;
+      consoleLog.scrollTop = consoleLog.scrollHeight;
+      
+      // Aquí realizaremos la petición fetch a tu endpoint de Render próximamente:
+      // fetch('https://tu-backend.onrender.com/api/start', { method: 'POST', body: JSON.stringify({ip, port, count}) })
     }
 
     function stopBots() {
-      alert("Deteniendo todos los bots...");
+      const consoleLog = document.getElementById("main-logs-console");
+      consoleLog.value += `\n[!] Solicitud de detención enviada a los bots...`;
+      consoleLog.scrollTop = consoleLog.scrollHeight;
     }
   </script>
 </body>
