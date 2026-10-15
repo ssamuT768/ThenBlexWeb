@@ -21,64 +21,145 @@
       </div>
     </nav>
 
-    <!-- Contenido Principal Panel Horizontal con todas las opciones -->
+    <!-- Contenido Principal Panel Horizontal con Pestañas Internas -->
     <main class="content-container panel-container">
       <h1 class="dashboard-title">Bot Control Panel</h1>
+
+      <!-- Pestañas internas del panel -->
+      <div class="panel-tabs-bar">
+        <button class="panel-tab-btn active" onclick="switchPanelTab('main', event)">Main</button>
+        <button class="panel-tab-btn" onclick="switchPanelTab('intime', event)">In Time</button>
+        <button class="panel-tab-btn" onclick="switchPanelTab('advanced', event)">Advanced</button>
+        <button class="panel-tab-btn" onclick="switchPanelTab('settings', event)">Settings</button>
+      </div>
       
-      <div class="panel-horizontal-box">
-        <!-- Fila 1: Conexión Básica -->
-        <div class="panel-section-title">Connection Settings</div>
-        <div class="panel-row">
-          <div class="input-field-group">
-            <label>Server IP</label>
-            <input type="text" id="server-ip" placeholder="127.0.0.1" autocomplete="off">
+      <!-- CONTENEDOR 1: MAIN -->
+      <div id="ptab-main" class="panel-tab-content active">
+        <div class="panel-horizontal-box">
+          <div class="panel-section-title">Connection Settings</div>
+          <div class="panel-row">
+            <div class="input-field-group">
+              <label>Host / IP</label>
+              <input type="text" id="main-ip" placeholder="127.0.0.1" autocomplete="off">
+            </div>
+            <div class="input-field-group">
+              <label>Puerto</label>
+              <input type="text" id="main-port" placeholder="19132" autocomplete="off">
+            </div>
+            <div class="input-field-group">
+              <label>Nombre Base</label>
+              <input type="text" id="main-name" placeholder="ThenBlexBot" autocomplete="off">
+            </div>
+            <div class="input-field-group">
+              <label>Cantidad Bots</label>
+              <input type="number" id="main-bots" placeholder="1" min="1" max="100">
+            </div>
           </div>
 
-          <div class="input-field-group">
-            <label>Port</label>
-            <input type="text" id="server-port" placeholder="19132" autocomplete="off">
+          <div class="panel-section-title" style="margin-top: 15px;">Timers & Proxies</div>
+          <div class="panel-row">
+            <div class="input-field-group">
+              <label>Hold (segundos)</label>
+              <input type="text" id="main-hold" placeholder="20s" autocomplete="off">
+            </div>
+            <div class="input-field-group">
+              <label>Timeout</label>
+              <input type="text" id="main-timeout" placeholder="6s" autocomplete="off">
+            </div>
+            <div class="input-field-group">
+              <label>Cooldown</label>
+              <input type="text" id="main-coldown" placeholder="0.5s" autocomplete="off">
+            </div>
+            <div class="input-field-group checkbox-group">
+              <label class="checkbox-label">
+                <input type="checkbox" id="main-proxy-switch">
+                <span>Usar Proxies</span>
+              </label>
+            </div>
           </div>
 
-          <div class="input-field-group">
-            <label>Bots Count</label>
-            <input type="number" id="bots-count" placeholder="5" min="1" max="50">
+          <div class="panel-row buttons-row" style="margin-top: 20px;">
+            <button class="panel-action-btn start-btn" onclick="startBots()">START</button>
+            <button class="panel-action-btn stop-btn" onclick="stopBots()">STOP</button>
           </div>
-
-          <div class="input-field-group">
-            <label>Prefix / Name</label>
-            <input type="text" id="bot-prefix" placeholder="ThenBlex_" autocomplete="off">
-          </div>
-        </div>
-
-        <!-- Fila 2: Funciones avanzadas (AutoRegister & AutoChatCode) -->
-        <div class="panel-section-title" style="margin-top: 15px;">Automation Options</div>
-        <div class="panel-row">
-          <div class="input-field-group">
-            <label>AutoRegister Password</label>
-            <input type="password" id="register-pass" placeholder="Password123" autocomplete="off">
-          </div>
-
-          <div class="input-field-group checkbox-group">
-            <label class="checkbox-label">
-              <input type="checkbox" id="autochat-toggle" checked>
-              <span>Enable AutoChatCode (Scan verification)</span>
-            </label>
-          </div>
-
-          <div class="input-field-group checkbox-group">
-            <label class="checkbox-label">
-              <input type="checkbox" id="autoregister-toggle" checked>
-              <span>Enable AutoRegister</span>
-            </label>
-          </div>
-        </div>
-
-        <!-- Fila 3: Botones de Acción -->
-        <div class="panel-row buttons-row" style="margin-top: 20px;">
-          <button class="panel-action-btn start-btn" onclick="startBots()">Start Bots</button>
-          <button class="panel-action-btn stop-btn" onclick="stopBots()">Stop Bots</button>
         </div>
       </div>
+
+      <!-- CONTENEDOR 2: IN TIME -->
+      <div id="ptab-intime" class="panel-tab-content">
+        <div class="panel-horizontal-box">
+          <div class="panel-section-title">Live Monitor & Chat</div>
+          <div class="panel-row stats-row">
+            <div class="stat-box"><span>Bots activos:</span> <b id="stat-bots">0</b></div>
+            <div class="stat-box"><span>Tiempo:</span> <b id="stat-uptime">00:00</b></div>
+            <div class="stat-box"><span>Ping:</span> <b id="stat-ping">0 ms</b></div>
+          </div>
+          <div class="panel-row" style="margin-top: 10px;">
+            <div class="input-field-group" style="flex: 100%;">
+              <label>Chat del Servidor</label>
+              <textarea class="panel-textarea" readonly placeholder="Esperando mensajes del servidor..."></textarea>
+            </div>
+          </div>
+          <div class="panel-row" style="margin-top: 10px;">
+            <div class="input-field-group" style="flex: 80%;">
+              <input type="text" placeholder="Escribe un mensaje en el chat..." autocomplete="off">
+            </div>
+            <div class="input-field-group" style="flex: 20%;">
+              <button class="panel-action-btn start-btn" style="width: 100%; padding: 11px;">Enviar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONTENEDOR 3: ADVANCED -->
+      <div id="ptab-advanced" class="panel-tab-content">
+        <div class="panel-horizontal-box">
+          <div class="panel-section-title">Advanced Controls & Spam</div>
+          <div class="panel-row">
+            <div class="input-field-group">
+              <label>Chunk Radius (1-96)</label>
+              <input type="number" value="8" min="1" max="96">
+            </div>
+            <div class="input-field-group">
+              <label>Spam Interval (ms)</label>
+              <input type="number" value="2000">
+            </div>
+          </div>
+          <div class="panel-row" style="margin-top: 10px;">
+            <div class="input-field-group" style="flex: 100%;">
+              <label>Mensaje de Spam</label>
+              <textarea class="panel-textarea" placeholder="Escribe tu mensaje de spam aquí..."></textarea>
+            </div>
+          </div>
+          <div class="panel-row buttons-row" style="margin-top: 15px;">
+            <button class="panel-action-btn start-btn">START SPAM</button>
+            <button class="panel-action-btn stop-btn">STOP SPAM</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONTENEDOR 4: SETTINGS -->
+      <div id="ptab-settings" class="panel-tab-content">
+        <div class="panel-horizontal-box">
+          <div class="panel-section-title">Servers & Proxy Manager</div>
+          <div class="panel-row">
+            <div class="input-field-group">
+              <label>Añadir Servidor (Name:IP:Port)</label>
+              <input type="text" placeholder="Server1:127.0.0.1:19132" autocomplete="off">
+            </div>
+            <div class="input-field-group" style="justify-content: flex-end;">
+              <button class="panel-action-btn start-btn" style="padding: 11px;">Añadir Servidor</button>
+            </div>
+          </div>
+          <div class="panel-row" style="margin-top: 10px;">
+            <div class="input-field-group" style="flex: 100%;">
+              <label>Lista de Proxies (SOCKS5)</label>
+              <textarea class="panel-textarea" placeholder="socks5://ip:port..."></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </main>
 
     <!-- Pie de página -->
@@ -88,17 +169,19 @@
   </div>
 
   <script>
+    function switchPanelTab(tabId, event) {
+      document.querySelectorAll(".panel-tab-content").forEach(c => c.classList.remove("active"));
+      document.querySelectorAll(".panel-tab-btn").forEach(b => b.classList.remove("active"));
+
+      document.getElementById("ptab-" + tabId).classList.add("active");
+      event.currentTarget.classList.add("active");
+    }
+
     function startBots() {
-      const ip = document.getElementById("server-ip").value;
-      const port = document.getElementById("server-port").value;
-      const count = document.getElementById("bots-count").value;
-      
-      if(!ip || !port) {
-        alert("Por favor ingresa la IP y el Puerto del servidor.");
-        return;
-      }
-      alert(`Iniciando ${count || 1} bots hacia ${ip}:${port}... (Conectando con Render API)`);
-      // Aquí conectaremos la API con tu script de Python en Render próximamente
+      const ip = document.getElementById("main-ip").value;
+      const port = document.getElementById("main-port").value;
+      const count = document.getElementById("main-bots").value;
+      alert(`Iniciando ${count || 1} bots hacia ${ip || '127.0.0.1'}:${port || '19132'}...`);
     }
 
     function stopBots() {
