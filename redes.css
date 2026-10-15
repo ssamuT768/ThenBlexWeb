@@ -1,0 +1,96 @@
+.redes-container {
+  align-items: center !important;
+}
+
+.cards-grid {
+  display: flex;
+  gap: 30px;
+  width: 100%;
+  justify-content: center;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+/* Tarjetas grandes con sombra/brillo difuminado alrededor */
+.social-card {
+  position: relative;
+  width: 250px;
+  height: 220px;
+  background: rgba(15, 20, 32, 0.75);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 229, 255, 0.2);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: #FFFFFF;
+  box-shadow: 0 0 25px rgba(0, 229, 255, 0.12), inset 0 0 15px rgba(0, 229, 255, 0.05);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+/* Efecto brillo espejo al pasar el mouse */
+.social-card::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(30deg) translateX(-100%);
+  transition: transform 0.6s ease-in-out;
+}
+
+.social-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  border-color: #00E5FF;
+  box-shadow: 0 0 35px rgba(0, 229, 255, 0.3), inset 0 0 20px rgba(0, 229, 255, 0.1);
+}
+
+.social-card:hover::after {
+  transform: rotate(30deg) translateX(100%);
+}
+
+.social-icon {
+  margin-bottom: 16px;
+}
+
+.card-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  background: linear-gradient(135deg, #00E5FF 0%, #FFFFFF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.card-subtitle {
+  font-size: 13px;
+  color: #94A3B8;
+  text-align: center;
+  padding: 0 16px;
+}
+
+/* Discord revelado */
+.dc-label {
+  font-size: 14px;
+  color: #94A3B8;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.dc-username {
+  font-size: 22px;
+  font-weight: 800;
+  color: #FFFFFF;
+  text-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+  letter-spacing: 0.5px;
+}
