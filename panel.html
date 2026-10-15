@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ThenBlex · Bot Panel</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="panel.css">
+</head>
+<body>
+
+  <div class="dashboard fade-in-dashboard">
+    <!-- Navbar superior -->
+    <nav class="navbar">
+      <div class="nav-brand">ThenBlex</div>
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn">Info</a>
+        <a href="redes.html" class="nav-btn">Redes</a>
+        <a href="panel.html" class="nav-btn active">Panel</a>
+        <a href="coming.html" class="nav-btn">Coming Soon</a>
+      </div>
+    </nav>
+
+    <!-- Contenido Principal Panel Horizontal -->
+    <main class="content-container panel-container">
+      <h1 class="dashboard-title">Bot Control Panel</h1>
+      
+      <div class="panel-horizontal-box">
+        <div class="input-field-group">
+          <label>Server IP</label>
+          <input type="text" placeholder="127.0.0.1" autocomplete="off">
+        </div>
+
+        <div class="input-field-group">
+          <label>Port</label>
+          <input type="text" placeholder="19132" autocomplete="off">
+        </div>
+
+        <div class="input-field-group">
+          <label>Bots Count</label>
+          <input type="number" placeholder="5" min="1" max="50">
+        </div>
+
+        <div class="panel-buttons-group">
+          <button class="panel-action-btn start-btn">Start Bots</button>
+          <button class="panel-action-btn stop-btn">Stop Bots</button>
+        </div>
+      </div>
+    </main>
+
+    <!-- Pie de página -->
+    <footer class="footer">
+      <span class="version-text">Version: 2.0.1</span>
+    </footer>
+  </div>
+
+</body>
+</html>
