@@ -1,8 +1,7 @@
 .panel-container {
-  max-width: 1050px !important;
+  max-width: 1100px !important;
 }
 
-/* Barra de pestañas internas del panel */
 .panel-tabs-bar {
   display: flex;
   gap: 10px;
@@ -63,6 +62,70 @@
   gap: 14px;
 }
 
+/* Distribución en 2 columnas para Main */
+.panel-main-grid {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.panel-main-column {
+  flex: 3;
+  min-width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Ventana lateral adicional a la derecha */
+.panel-side-window {
+  flex: 2;
+  min-width: 250px;
+  background: rgba(11, 16, 26, 0.85);
+  border: 1px solid rgba(0, 229, 255, 0.15);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.side-window-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 13px;
+}
+
+.status-item {
+  display: flex;
+  justify-content: space-between;
+  color: #94A3B8;
+  background: #161D2F;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #1E293B;
+}
+
+.status-item b {
+  color: #FFFFFF;
+}
+
+.status-online {
+  color: #22C55E !important;
+}
+
+.status-quick-desc {
+  color: #94A3B8;
+  font-size: 12px;
+  line-height: 1.5;
+  background: rgba(15, 20, 32, 0.5);
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px dashed rgba(0, 229, 255, 0.2);
+}
+
 .panel-section-title {
   font-size: 13px;
   font-weight: 700;
@@ -83,7 +146,7 @@
 
 .input-field-group {
   flex: 1;
-  min-width: 180px;
+  min-width: 140px;
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -99,7 +162,7 @@
 .input-field-group input[type="number"],
 .input-field-group input[type="password"] {
   width: 100%;
-  padding: 11px 14px;
+  padding: 10px 14px;
   border-radius: 9px;
   border: 1px solid #1E293B;
   background-color: #161D2F;
@@ -128,6 +191,11 @@
   outline: none;
 }
 
+.logs-textarea {
+  height: 130px;
+  color: #38BDF8;
+}
+
 .stats-row {
   display: flex;
   gap: 15px;
@@ -151,7 +219,7 @@
 
 .checkbox-group {
   justify-content: center;
-  min-width: 200px;
+  min-width: 180px;
 }
 
 .checkbox-label {
@@ -163,7 +231,7 @@
   color: #E2E8F0;
   font-weight: 600;
   background: #161D2F;
-  padding: 11px 14px;
+  padding: 10px 14px;
   border-radius: 9px;
   border: 1px solid #1E293B;
   width: 100%;
@@ -179,13 +247,13 @@
 .buttons-row {
   justify-content: flex-end;
   gap: 14px;
-  padding-top: 10px;
+  padding-top: 6px;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .panel-action-btn {
   position: relative;
-  padding: 12px 28px;
+  padding: 12px 32px;
   border: none;
   border-radius: 10px;
   font-weight: bold;
