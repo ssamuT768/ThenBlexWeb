@@ -12,7 +12,7 @@
   <div id="loader-screen" class="loader-screen">
     <div class="loader-content">
       <h1 class="brand-title" id="brand-title">ThenBlex</h1>
-      <div class="progress-container" id="progress-container">
+      <div class="progress-container hidden" id="progress-container">
         <div class="progress-bar-bg">
           <div class="progress-bar-fill" id="progress-fill"></div>
         </div>
@@ -86,9 +86,7 @@
   </div>
 
   <script>
-    // Animación inicial de carga
     window.addEventListener("DOMContentLoaded", () => {
-      // Si ya ingresó la key anteriormente en la sesión, salta el loader/key
       if (sessionStorage.getItem("authenticated") === "true") {
         document.getElementById("loader-screen").style.display = "none";
         document.getElementById("key-screen").style.display = "none";
@@ -98,37 +96,46 @@
         return;
       }
 
-      let progress = 0;
+      const brandTitle = document.getElementById("brand-title");
+      const progressContainer = document.getElementById("progress-container");
       const progressFill = document.getElementById("progress-fill");
       const progressText = document.getElementById("progress-text");
       const loaderScreen = document.getElementById("loader-screen");
       const keyScreen = document.getElementById("key-screen");
-      const brandTitle = document.getElementById("brand-title");
-      const progressContainer = document.getElementById("progress-container");
 
-      const interval = setInterval(() => {
-        progress += Math.floor(Math.random() * 8) + 3;
-        if (progress >= 100) {
-          progress = 100;
-          clearInterval(interval);
+      // Paso 1: Mostrar título centrado, esperar 0.8s y subirlo
+      setTimeout(() => {
+        brandTitle.classList.add("slide-up");
+        
+        // Paso 2: Justo cuando sube el título, revelar la barra de carga
+        setTimeout(() => {
+          progressContainer.classList.remove("hidden");
+          
+          let progress = 0;
+          const interval = setInterval(() => {
+            progress += Math.floor(Math.random() * 8) + 3;
+            if (progress >= 100) {
+              progress = 100;
+              clearInterval(interval);
 
-          brandTitle.classList.add("slide-up");
-          progressContainer.classList.add("fade-out");
+              progressContainer.classList.add("fade-out");
+              setTimeout(() => {
+                loaderScreen.classList.add("fade-out-screen");
+                setTimeout(() => {
+                  loaderScreen.style.display = "none";
+                  keyScreen.classList.remove("hidden");
+                }, 500);
+              }, 600);
+            }
+            progressFill.style.width = progress + "%";
+            progressText.innerText = progress + "%";
+          }, 40);
 
-          setTimeout(() => {
-            loaderScreen.classList.add("fade-out-screen");
-            setTimeout(() => {
-              loaderScreen.style.display = "none";
-              keyScreen.classList.remove("hidden");
-            }, 500);
-          }, 800);
-        }
-        progressFill.style.width = progress + "%";
-        progressText.innerText = progress + "%";
-      }, 50);
+        }, 400);
+
+      }, 900);
     });
 
-    // Ojo para mostrar/ocultar contraseña
     const keyInput = document.getElementById("key-input");
     const toggleEyeBtn = document.getElementById("toggle-eye-btn");
     const eyeIcon = document.getElementById("eye-icon");
@@ -143,7 +150,6 @@
       }
     });
 
-    // Validación de Key
     function verifyKey() {
       const inputVal = keyInput.value.trim();
       const errorMsg = document.getElementById("error-msg");
@@ -168,14 +174,12 @@
 
       setTimeout(() => {
         keyWindow.classList.add("windows-minimize");
-
         setTimeout(() => {
           document.getElementById("key-screen").style.display = "none";
           const dashboard = document.getElementById("main-dashboard");
           dashboard.classList.remove("hidden");
           dashboard.classList.add("fade-in-dashboard");
         }, 600);
-
       }, 2000);
     }
   </script>
