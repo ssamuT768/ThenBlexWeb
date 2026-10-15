@@ -2,6 +2,54 @@
   max-width: 1050px !important;
 }
 
+/* Barra de pestañas internas del panel */
+.panel-tabs-bar {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.panel-tab-btn {
+  background: rgba(15, 20, 32, 0.7);
+  border: 1px solid rgba(0, 229, 255, 0.15);
+  color: #94A3B8;
+  padding: 10px 22px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: url('hand.cur'), pointer !important;
+  transition: all 0.2s ease;
+}
+
+.panel-tab-btn:hover {
+  color: #FFFFFF;
+  border-color: #00E5FF;
+  background: rgba(0, 229, 255, 0.1);
+}
+
+.panel-tab-btn.active {
+  background: rgba(0, 229, 255, 0.2);
+  border-color: #00E5FF;
+  color: #FFFFFF;
+  box-shadow: 0 0 15px rgba(0, 229, 255, 0.2);
+}
+
+.panel-tab-content {
+  display: none;
+  width: 100%;
+}
+
+.panel-tab-content.active {
+  display: block;
+  animation: fadeInTab 0.3s ease;
+}
+
+@keyframes fadeInTab {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 .panel-horizontal-box {
   width: 100%;
   background: rgba(15, 20, 32, 0.75);
@@ -66,9 +114,44 @@
   box-shadow: 0 0 10px rgba(0, 229, 255, 0.2);
 }
 
+.panel-textarea {
+  width: 100%;
+  height: 110px;
+  padding: 12px;
+  border-radius: 9px;
+  border: 1px solid #1E293B;
+  background-color: #161D2F;
+  color: #00E5FF;
+  font-family: monospace;
+  font-size: 13px;
+  resize: none;
+  outline: none;
+}
+
+.stats-row {
+  display: flex;
+  gap: 15px;
+}
+
+.stat-box {
+  flex: 1;
+  background: #161D2F;
+  border: 1px solid #1E293B;
+  padding: 12px 16px;
+  border-radius: 9px;
+  font-size: 13px;
+  color: #94A3B8;
+  display: flex;
+  justify-content: space-between;
+}
+
+.stat-box b {
+  color: #FFFFFF;
+}
+
 .checkbox-group {
   justify-content: center;
-  min-width: 220px;
+  min-width: 200px;
 }
 
 .checkbox-label {
@@ -100,7 +183,6 @@
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* Botones de acción con efecto espejo y ampliación */
 .panel-action-btn {
   position: relative;
   padding: 12px 28px;
