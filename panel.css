@@ -1,40 +1,58 @@
 .panel-container {
-  max-width: 1000px !important;
+  max-width: 1050px !important;
 }
 
-/* Caja contenedora horizontal moderna */
 .panel-horizontal-box {
   width: 100%;
   background: rgba(15, 20, 32, 0.75);
   backdrop-filter: blur(12px);
-  padding: 30px;
+  padding: 28px;
   border-radius: 16px;
   border: 1px solid rgba(0, 229, 255, 0.2);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
   display: flex;
-  gap: 20px;
-  align-items: flex-end;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.panel-section-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #00E5FF;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 6px;
+}
+
+.panel-row {
+  display: flex;
+  gap: 16px;
+  width: 100%;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .input-field-group {
   flex: 1;
-  min-width: 160px;
+  min-width: 180px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
 .input-field-group label {
-  font-size: 13px;
+  font-size: 12px;
   color: #94A3B8;
   font-weight: 600;
 }
 
-.input-field-group input {
+.input-field-group input[type="text"],
+.input-field-group input[type="number"],
+.input-field-group input[type="password"] {
   width: 100%;
-  padding: 12px 14px;
-  border-radius: 10px;
+  padding: 11px 14px;
+  border-radius: 9px;
   border: 1px solid #1E293B;
   background-color: #161D2F;
   color: #FFFFFF;
@@ -48,15 +66,44 @@
   box-shadow: 0 0 10px rgba(0, 229, 255, 0.2);
 }
 
-.panel-buttons-group {
-  display: flex;
-  gap: 12px;
+.checkbox-group {
+  justify-content: center;
+  min-width: 220px;
 }
 
-/* Botones de acción con efecto espejo, ampliación y brillo */
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: url('hand.cur'), pointer !important;
+  font-size: 13px;
+  color: #E2E8F0;
+  font-weight: 600;
+  background: #161D2F;
+  padding: 11px 14px;
+  border-radius: 9px;
+  border: 1px solid #1E293B;
+  width: 100%;
+}
+
+.checkbox-label input[type="checkbox"] {
+  accent-color: #00E5FF;
+  width: 16px;
+  height: 16px;
+  cursor: url('hand.cur'), pointer !important;
+}
+
+.buttons-row {
+  justify-content: flex-end;
+  gap: 14px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Botones de acción con efecto espejo y ampliación */
 .panel-action-btn {
   position: relative;
-  padding: 12px 24px;
+  padding: 12px 28px;
   border: none;
   border-radius: 10px;
   font-weight: bold;
