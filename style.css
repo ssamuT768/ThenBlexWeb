@@ -1,4 +1,3 @@
-/* ================= VARIABLES Y CURSORES PERSONALIZADOS ================= */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -21,7 +20,6 @@ body {
   align-items: center;
 }
 
-/* ================= PANTALLA DE CARGA ================= */
 .loader-screen {
   position: fixed;
   top: 0;
@@ -42,6 +40,7 @@ body {
   align-items: center;
   text-align: center;
   position: relative;
+  width: 100%;
 }
 
 .brand-title {
@@ -52,11 +51,14 @@ body {
   -webkit-text-fill-color: transparent;
   transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   letter-spacing: 1px;
 }
 
 .brand-title.slide-up {
-  transform: translateY(-50px) scale(0.75);
+  transform: translate(-50%, -120px) scale(0.75);
 }
 
 .progress-container {
@@ -64,7 +66,9 @@ body {
   flex-direction: column;
   align-items: center;
   position: absolute;
-  top: 35px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -20px);
   opacity: 1;
   transition: opacity 0.5s ease;
 }
@@ -109,7 +113,6 @@ body {
   display: none !important;
 }
 
-/* ================= SISTEMA DE KEY ================= */
 .key-screen {
   position: fixed;
   top: 0;
@@ -231,7 +234,6 @@ body {
   height: 14px;
 }
 
-/* Botón con efecto espejo */
 .verify-btn {
   position: relative;
   width: 100%;
@@ -305,7 +307,6 @@ body {
   opacity: 0;
 }
 
-/* ================= PANEL PRINCIPAL (DASHBOARD) ================= */
 .dashboard {
   position: fixed;
   top: 0;
@@ -324,7 +325,6 @@ body {
   opacity: 1;
 }
 
-/* Navbar */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -349,11 +349,10 @@ body {
   gap: 12px;
 }
 
-/* Botones de menú con animación tipo espejo */
 .nav-btn {
   position: relative;
   text-decoration: none;
-  color: #94A3B8;
+  color: #FFFFFF; /* Blanco brillante */
   font-size: 14px;
   font-weight: 600;
   padding: 8px 18px;
@@ -375,7 +374,7 @@ body {
   background: linear-gradient(
     to right,
     rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0.3) 50%,
     rgba(255, 255, 255, 0) 100%
   );
   transform: rotate(30deg) translateX(-100%);
@@ -383,9 +382,8 @@ body {
 }
 
 .nav-btn:hover {
-  color: #FFFFFF;
-  background-color: rgba(0, 229, 255, 0.12);
-  border-color: rgba(0, 229, 255, 0.3);
+  background-color: rgba(0, 229, 255, 0.15);
+  border-color: rgba(0, 229, 255, 0.4);
   transform: scale(1.05);
 }
 
@@ -394,12 +392,10 @@ body {
 }
 
 .nav-btn.active {
-  color: #FFFFFF;
-  background-color: rgba(0, 229, 255, 0.18);
+  background-color: rgba(0, 229, 255, 0.22);
   border-color: #00E5FF;
 }
 
-/* Contenido Principal */
 .content-container {
   flex: 1;
   max-width: 850px;
@@ -411,7 +407,6 @@ body {
   align-items: flex-start;
 }
 
-/* Título con degradado Cian a Blanco pegado a la izquierda */
 .dashboard-title {
   font-size: 38px;
   font-weight: 800;
@@ -422,7 +417,6 @@ body {
   text-align: left;
 }
 
-/* Tarjeta oscura estilizada */
 .dashboard-description-card {
   width: 100%;
   background: rgba(15, 20, 32, 0.7);
@@ -439,7 +433,6 @@ body {
   color: #E2E8F0;
 }
 
-/* Resaltado de ssamut25 estético y limpio */
 .highlight-dev {
   color: #00E5FF;
   font-weight: 800;
@@ -447,7 +440,6 @@ body {
   letter-spacing: 0.5px;
 }
 
-/* Footer */
 .footer {
   padding: 16px 36px;
   display: flex;
