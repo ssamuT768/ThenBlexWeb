@@ -103,11 +103,11 @@
       const loaderScreen = document.getElementById("loader-screen");
       const keyScreen = document.getElementById("key-screen");
 
-      // Paso 1: Mostrar título centrado, esperar 0.8s y subirlo
+      // Paso 1: Mostrar título centrado, esperar 1 segundo y subirlo
       setTimeout(() => {
         brandTitle.classList.add("slide-up");
         
-        // Paso 2: Justo cuando sube el título, revelar la barra de carga
+        // Paso 2: Revelar la barra de carga abajo exactamente cuando sube el título
         setTimeout(() => {
           progressContainer.classList.remove("hidden");
           
@@ -133,7 +133,7 @@
 
         }, 400);
 
-      }, 900);
+      }, 1000);
     });
 
     const keyInput = document.getElementById("key-input");
